@@ -79,7 +79,7 @@ const Eigen::Matrix<double, 12, 1> &Controller::step(
             jointHistoryQueue_.front(), jointHistoryQueue_.back(), // joint history
             action_, // previous action
             command; // command
-            
+
     /// get action (normalise observation and action)
     ob_ = (ob_ - obMean_).cwiseQuotient(obStd_).cwiseMin(10.).cwiseMax(-10.);
     action_ = policy_->forward(ob_).cwiseMin(2.).cwiseMax(-2.);
