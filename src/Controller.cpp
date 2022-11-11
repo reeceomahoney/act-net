@@ -38,8 +38,8 @@ Controller::Controller(const std::string &configPath,
     gv_.setZero();
 
     /// observation scaling
-    obMean_ = loadParametersFromFile(obMeanPath);
-    obStd_ = loadParametersFromFile(obVarPath).cwiseSqrt();
+    obMean_ = loadParametersFromFile(obMeanPath).transpose().col(0);
+    obStd_ = loadParametersFromFile(obVarPath).transpose().col(0).cwiseSqrt();
 
     /// action scaling
     actionMean_ = gc_.tail(12);
@@ -91,6 +91,14 @@ const Eigen::Matrix<double, 12, 1> &Controller::step(
     jointHistoryQueue_.push(jointHistory_);
 
     return action_;
+}
+
+const Eigen::Matrix<double, 19, 1> &Controller::getGc() const {
+    return gc_;
+}
+
+const Eigen::Matrix<double, 18, 1> &Controller::getGv() const {
+    return gv_;
 }
 
 void Controller::quatToRotMat(const Eigen::Matrix<double, 4, 1> &q, Eigen::Matrix<double, 3, 3> &R){

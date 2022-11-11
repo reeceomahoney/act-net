@@ -34,6 +34,10 @@ public:
 
     const Eigen::MatrixXd &loadParametersFromFile(const std::string &filePath);
 
+    const Eigen::Matrix<double, 19, 1> &getGc() const;
+
+    const Eigen::Matrix<double, 18, 1> &getGv() const;
+
 private:
     Eigen::Matrix<double, 97, 1> ob_, obMean_, obStd_;
     Eigen::Matrix<double, 19, 1> gc_, gcInit_;
