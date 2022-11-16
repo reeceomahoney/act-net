@@ -1,0 +1,4 @@
+<library path="lib/libact_net_ctrl_plugin">
+  <class type="act_net_ctrl::Controller" base_class_type="robot_control::ControllerInterface">
+  </class>
+</library>

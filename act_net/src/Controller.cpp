@@ -2,7 +2,9 @@
 // Created by Reece O'Mahoney
 //
 
-#include "act-net-vanilla/Controller.hpp"
+#include "act_net/Controller.hpp"
+
+using namespace act_net;
 
 Controller::Controller(const std::string &configPath,
                        const std::string &networkParametersPath,
@@ -132,4 +134,8 @@ const Eigen::MatrixXd &Controller::loadParametersFromFile(const std::string &fil
             Eigen::RowMajor>>(values.data(), rows, static_cast<unsigned int>(values.size()) / rows);
 
     return fileParameters_;
+}
+
+Eigen::Matrix<double, 19, 1> &Controller::getGcInit() {
+    return gcInit_;
 }
