@@ -2,7 +2,7 @@
 // Created by Reece O'Mahoney
 //
 
-#include "act-net-vanilla/Controller.hpp"
+#include "act-net/Controller.hpp"
 
 Controller::Controller(const std::string &configPath,
                        const std::string &networkParametersPath,

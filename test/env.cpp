@@ -7,7 +7,7 @@
 #include "Eigen/Core"
 #include "raisim/World.hpp"
 #include "raisim/RaisimServer.hpp"
-#include "act-net-vanilla/Controller.hpp"
+#include "act-net/Controller.hpp"
 #include "include/Actuation.hpp"
 
 

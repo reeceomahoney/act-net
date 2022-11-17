@@ -2,8 +2,8 @@
 // Created by Reece O'Mahoney
 //
 
-#ifndef ACT_NET_VANILLA_CONTROLLER_HPP
-#define ACT_NET_VANILLA_CONTROLLER_HPP
+#ifndef ACT_NET_CONTROLLER_HPP
+#define ACT_NET_CONTROLLER_HPP
 
 #include "Eigen/Core"
 #include <queue>
@@ -67,4 +67,4 @@ private:
 };
 
 
-#endif //ACT_NET_VANILLA_CONTROLLER_HPP
+#endif //ACT_NET_CONTROLLER_HPP
