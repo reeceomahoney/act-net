@@ -1,0 +1,93 @@
+# to enable map frame on launch
+localization_manager:
+  frame_connectors:
+    feedthrough:
+      slam_connector:
+        broadcast_zero_init_tf: true
+
+slam:
+  mapping:
+    load_map_on_launch: false
+
+# Any other parameter that passed to the xacro file should go here
+# We need to pass these parameters before the block underneath
+load_anymal_description:
+  custom_parameters:
+    imu_roll: 1.008144836
+    imu_pitch: -0.297022562
+    imu_yaw: 90.450763662
+    B_r_BBcom_x: -0.010
+    B_r_BBcom_y: -0.015
+
+    depth_camera_front_pitch: 31.6843
+    depth_camera_front_roll: -0.516993
+    depth_camera_left_pitch: 31.1469
+    depth_camera_left_roll: 1.50064
+    depth_camera_rear_pitch: 31.05
+    depth_camera_rear_roll: -1.38
+    depth_camera_right_pitch: 31.4451
+    depth_camera_right_roll: 0.0
+
+    drs_base: true
+    handle_z_offset: 0.003
+    interface_hatch: true
+
+    # Subt options
+    perception_head: true
+    bpearl_front: false
+    bpearl_rear: false
+
+    # Corrections after installing custom ANYbotics parts
+    # were directly added to the xacro file
+    # x,y,z offsets are in meters
+    # roll, pitch, yaw are in degrees
+
+# Here we configure the main nodes/stacks to be launched
+stack_launcher:
+  nodes:
+    # The block below overrides the default ANYbotics path to find the xacro file
+    load_anymal_description:
+      preprocessed_params:
+        xacro_file:
+          value: $(rospack find anymal_coyote_drs)/urdf/anymal_coyote_drs.urdf.xacro
+  stacks:
+    navigation:
+      nodes:
+        elevation_mapping:
+          enabled: true
+          name: elevation_mapping
+
+# Enable infra2 for all cameras
+# Note: seems like driver/enable_infra2 is the only one that matters
+# any_realsense2_camera/enable_infra2
+depth_camera_right:
+  any_realsense2_camera:
+    enable_infra2: true
+  driver:
+    enable_infra2: true
+depth_camera_rear:
+  any_realsense2_camera:
+    enable_infra2: true
+  driver:
+    enable_infra2: true
+depth_camera_front:
+  any_realsense2_camera:
+    enable_infra2: true
+  driver:
+    enable_infra2: true
+depth_camera_left:
+  any_realsense2_camera:
+    enable_infra2: true
+  driver:
+    enable_infra2: true
+
+# [actNet]
+motion_control_manager:
+  available_controllers:
+    controllers:
+      base_ee_controller:
+        plugin_name: act_net_ctrl::Controller
+        name: act_net
+        parameter_package: act_net_ctrl
+        parameter_path: config
+        emergency_controller: emergency_freeze

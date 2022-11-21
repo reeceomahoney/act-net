@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+  <!-- First unset /config_loaded to ensure everything is properly loaded with this launch -->
+  <rosparam command="delete" param="/config_loaded"/>
+
+  <node name="load_config" pkg="anymal_c" type="load_config.py"
+    args="--robot coyote --extension-config-file $(find act_net_ctrl)/config/lpc.yaml"
+    output="screen"/>
+  <node name="stack_launcher_lpc" pkg="stack_launcher" type="launch_stack.py"
+    args="lpc --trigger-param '/config_loaded'"
+    output="screen"/>
+
+</launch>
