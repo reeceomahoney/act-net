@@ -39,7 +39,7 @@ stack_launcher:
         xacro_file:
           value: $(rospack find anymal_coyote_drs)/urdf/anymal_coyote_drs.urdf.xacro
 
-# [Doppler]
+# [actNet]
 motion_control_manager:
   available_controllers:
     controllers:

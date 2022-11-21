@@ -17,6 +17,8 @@ namespace act_net {
     class Controller {
 
     public:
+        Controller() = delete;
+
         Controller(
                 const std::string &configurationPath,
                 const std::string &networkParametersPath,
@@ -34,7 +36,7 @@ namespace act_net {
 
         const Eigen::MatrixXd &loadParametersFromFile(const std::string &filePath);
 
-        Eigen::Matrix<double, 19, 1> &getGcInit();
+        const Eigen::Matrix<double, 19, 1> &getGcInit();
 
     private:
         Eigen::Matrix<double, 97, 1> ob_, obMean_, obStd_;
@@ -62,6 +64,8 @@ namespace act_net {
         Eigen::MatrixXd fileParameters_;
 
         YAML::Node config_;
+
+        int controlDecimation_, elapsedCallbackSteps_;
     };
 }
 

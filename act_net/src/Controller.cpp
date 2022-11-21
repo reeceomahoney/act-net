@@ -3,6 +3,7 @@
 //
 
 #include "act_net/Controller.hpp"
+#include <iostream>
 
 using namespace act_net;
 
@@ -40,27 +41,51 @@ Controller::Controller(const std::string &configPath,
     gv_.setZero();
 
     /// observation scaling
-    obMean_ = loadParametersFromFile(obMeanPath);
-    obStd_ = loadParametersFromFile(obVarPath).cwiseSqrt();
+    obMean_ = loadParametersFromFile(obMeanPath).transpose().col(0);
+    obStd_ = loadParametersFromFile(obVarPath).transpose().col(0).cwiseSqrt();
 
     /// action scaling
     actionMean_ = gc_.tail(12);
     actionStd_.setConstant(0.5);
 
     /// initialise containers
-    action_.setZero();
-    jointHistoryQueue_.push(Eigen::Matrix<double, 24, 1>::Zero());
+    action_ = actionMean_;
+
+    controlDecimation_ = 400/50;
+
+    reset();
 }
 
 void Controller::reset() {
+    linVel_.setZero();
+    angVel_.setZero();
+
+    rotMat_.setIdentity();
+    ob_.setZero();
+    action_.setZero();
+
+    jointHistory_.setZero();
+    jointHistoryQueue_.push(Eigen::Matrix<double, 24, 1>::Zero());
+
     gc_ = gcInit_;
     gv_.setZero();
+
+    elapsedCallbackSteps_ = 0;
 }
 
 const Eigen::Matrix<double, 12, 1> &Controller::step(
         Eigen::Matrix<double, 19, 1> &generalizedCoordinate,
         Eigen::Matrix<double, 18, 1> &generalizedVelocity,
         Eigen::Matrix<double, 3, 1> &command) {
+
+    if (elapsedCallbackSteps_++ % controlDecimation_ != 0) {
+        if (elapsedCallbackSteps_ == controlDecimation_) {
+            elapsedCallbackSteps_ = 0;
+        }
+
+        return action_;
+    }
+
     /// update angular and linear velocity
     gc_ = generalizedCoordinate;
     gv_ = generalizedVelocity;
@@ -136,6 +161,6 @@ const Eigen::MatrixXd &Controller::loadParametersFromFile(const std::string &fil
     return fileParameters_;
 }
 
-Eigen::Matrix<double, 19, 1> &Controller::getGcInit() {
+const Eigen::Matrix<double, 19, 1> &Controller::getGcInit() {
     return gcInit_;
 }

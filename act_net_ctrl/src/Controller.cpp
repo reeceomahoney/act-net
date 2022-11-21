@@ -11,6 +11,8 @@
 
 #include <loco/common/ParameterSet.hpp>
 #include <memory>
+#include <iostream>
+
 
 using namespace act_net_ctrl;
 
@@ -97,6 +99,8 @@ bool Controller::create() {
 bool Controller::initialize() {
     // Create Objects
     std::string actNetParameters = ros::package::getPath("act_net_ctrl") + "/parameters";
+
+    if(!loadParameters(actNetParameters + "/../config")) return false;
 
     actNet_ = std::make_unique<act_net::Controller>(
             actNetParameters + "/agent.yaml",
@@ -186,7 +190,6 @@ anymal_motion_control::SwitchResult Controller::goToReferenceType(anymal_motion_
 
 void Controller::goToOperationMode(
         const std::string &operationMode, anymal_motion_control::OperationModeAction *action) {
-
     if (operationMode == "walk") {
         initialize();
 

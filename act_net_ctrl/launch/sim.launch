@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <launch>
-  <node name="act_net_sim_node" pkg="anymal_c" type="sim.py" args="--extension-config-file $(find act_net_ctrl)/config/sim.yaml" output="screen"/>
+  <env name="ROSCONSOLE_CONFIG_FILE" value="$(find act_net_ctrl)/config/console.conf"/>
+  <node name="act_net_sim_node" pkg="anymal_c" type="sim.py"
+    args="--extension-config-file $(find act_net_ctrl)/config/sim.yaml"
+    output="screen"/>
 </launch>
