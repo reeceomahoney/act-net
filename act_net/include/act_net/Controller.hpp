@@ -39,7 +39,7 @@ namespace act_net {
         const Eigen::Matrix<double, 19, 1> &getGcInit();
 
     private:
-        Eigen::Matrix<double, 97, 1> ob_, obMean_, obStd_;
+        Eigen::Matrix<double, 96, 1> ob_, obMean_, obStd_;
         Eigen::Matrix<double, 19, 1> gc_, gcInit_;
         Eigen::Matrix<double, 18, 1> gv_;
 
