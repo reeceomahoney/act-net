@@ -98,8 +98,7 @@ const Eigen::Matrix<double, 12, 1> &Controller::step(
     jointVel_ = gv_.tail(12);
 
     /// collect observations
-    ob_ << gc_[2], // body height
-            rotMat_.row(2).transpose(), // body orientation
+    ob_ <<  rotMat_.row(2).transpose(), // body orientation
             jointAngles_, // joint angles
             linVel_, angVel_, // body linear&angular velocity
             jointVel_, // joint velocity
