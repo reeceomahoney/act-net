@@ -19,7 +19,7 @@ add_library(${PROJECT_NAME} SHARED ${SOURCES} ${HEADERS} test/include/Actuation.
 target_link_libraries(${PROJECT_NAME} PUBLIC ${YAML_CPP_LIBRARIES})
 
 # Raisim test
-list(APPEND CMAKE_PREFIX_PATH $ENV{RAISIM_LOCAL_INSTALL})
+list(APPEND CMAKE_PREFIX_PATH $ENV{LOCAL_INSTALL})
 
 find_package(raisim CONFIG REQUIRED)
 
