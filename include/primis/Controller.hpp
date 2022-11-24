@@ -2,8 +2,8 @@
 // Created by Reece O'Mahoney
 //
 
-#ifndef ACT_NET_VANILLA_CONTROLLER_HPP
-#define ACT_NET_VANILLA_CONTROLLER_HPP
+#ifndef PRIMIS_CONTROLLER_HPP
+#define PRIMIS_CONTROLLER_HPP
 
 #include "Eigen/Core"
 #include <queue>
@@ -34,8 +34,12 @@ public:
 
     const Eigen::MatrixXd &loadParametersFromFile(const std::string &filePath);
 
+    const Eigen::Matrix<double, 19, 1> &getGc() const;
+
+    const Eigen::Matrix<double, 18, 1> &getGv() const;
+
 private:
-    Eigen::Matrix<double, 97, 1> ob_, obMean_, obStd_;
+    Eigen::Matrix<double, 96, 1> ob_, obMean_, obStd_;
     Eigen::Matrix<double, 19, 1> gc_, gcInit_;
     Eigen::Matrix<double, 18, 1> gv_;
 
@@ -63,4 +67,4 @@ private:
 };
 
 
-#endif //ACT_NET_VANILLA_CONTROLLER_HPP
+#endif //PRIMIS_CONTROLLER_HPP
