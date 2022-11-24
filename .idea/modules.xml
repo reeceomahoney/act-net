@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/act-net-vanilla.iml" filepath="$PROJECT_DIR$/.idea/act-net-vanilla.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/primis.iml" filepath="$PROJECT_DIR$/.idea/primis.iml" />
     </modules>
   </component>
 </project>
