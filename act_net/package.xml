@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<package format="2">
-    <name>act_net</name>
-    <version>0.0.1</version>
-    <description>Vanilla RL controller with actuator network</description>
-    <maintainer email="romahoney@robots.ox.ac.uk">Reece O'Mahoney</maintainer>
-    <license>Proprietary</license>
-    <buildtool_depend>catkin</buildtool_depend>
-</package>

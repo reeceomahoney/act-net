@@ -1,6 +1,0 @@
-<?xml version="1.0" ?>
-<ActuationGains>
-  <HAA pGain="80.0" iGain="0.0" dGain="2.0"/>
-  <HFE pGain="80.0" iGain="0.0" dGain="2.0"/>
-  <KFE pGain="80.0" iGain="0.0" dGain="2.0"/>
-</ActuationGains>
