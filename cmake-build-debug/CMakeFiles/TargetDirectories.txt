@@ -1,0 +1,4 @@
+/home/reece/Workspace/Projects/primis/cmake-build-debug/CMakeFiles/primis_raisim.dir
+/home/reece/Workspace/Projects/primis/cmake-build-debug/CMakeFiles/primis_raisim_test.dir
+/home/reece/Workspace/Projects/primis/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/reece/Workspace/Projects/primis/cmake-build-debug/CMakeFiles/rebuild_cache.dir

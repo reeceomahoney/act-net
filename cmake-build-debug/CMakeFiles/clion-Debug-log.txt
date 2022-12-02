@@ -1,0 +1,8 @@
+/snap/clion/218/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/snap/clion/218/bin/ninja/linux/ninja -G Ninja -S /home/reece/Workspace/Projects/primis -B /home/reece/Workspace/Projects/primis/cmake-build-debug
+-- raisim:
+--   Version: 1.1.5
+--   Includes: /home/reece/Workspace/Installs/include
+--   Libraries: raisim::raisimPng;raisim::raisimODE;raisim::raisimMine;raisim::raisim
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/reece/Workspace/Projects/primis/cmake-build-debug

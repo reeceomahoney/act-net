@@ -1,0 +1,5 @@
+# ninja log v5
+4182	4408	1669981490945299187	libprimis_raisim.so	800d8b706762f655
+0	4179	1669981490709301080	CMakeFiles/primis_raisim.dir/src/Controller.cpp.o	49e3fb48a8010231
+1	5349	1669981600376421685	CMakeFiles/primis_raisim_test.dir/test/env.cpp.o	5cb4084b14640934
+5350	5623	1669981600656419439	primis_raisim_test	ae0d6a53622199c3
