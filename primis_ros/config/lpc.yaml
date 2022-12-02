@@ -81,13 +81,13 @@ depth_camera_left:
   driver:
     enable_infra2: true
 
-# [actNet]
+# [Primis]
 motion_control_manager:
   available_controllers:
     controllers:
       base_ee_controller:
-        plugin_name: act_net_ctrl::Controller
-        name: act_net
-        parameter_package: act_net_ctrl
+        plugin_name: primis_ros::Controller
+        name: primis
+        parameter_package: primis_ros
         parameter_path: config
         emergency_controller: emergency_freeze

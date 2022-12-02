@@ -2,8 +2,8 @@
 // Created by Reece O'Mahoney
 //
 
-#ifndef ACT_NET_CONTROLLER_HPP
-#define ACT_NET_CONTROLLER_HPP
+#ifndef PRIMIS_CONTROLLER_HPP
+#define PRIMIS_CONTROLLER_HPP
 
 #include "Eigen/Core"
 #include <queue>
@@ -13,7 +13,7 @@
 #include "networks_minimal/MultiLayerPerceptron.hpp"
 #include <yaml-cpp/yaml.h>
 
-namespace act_net {
+namespace primis {
     class Controller {
 
     public:
@@ -69,4 +69,4 @@ namespace act_net {
     };
 }
 
-#endif //ACT_NET_CONTROLLER_HPP
+#endif //PRIMIS_CONTROLLER_HPP

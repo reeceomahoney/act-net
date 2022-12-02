@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.16)
-project(act_net_ctrl)
+project(primis_ros)
 
 set(CMAKE_CXX_STANDARD 14)
 
 set(CATKIN_PACKAGE_DEPENDENCIES
         anymal_motion_control
-        act_net
+        primis
         dynamic_class_loader
         robot_control
         )
@@ -14,7 +14,7 @@ find_package(catkin REQUIRED COMPONENTS ${CATKIN_PACKAGE_DEPENDENCIES})
 
 catkin_package(
         INCLUDE_DIRS include
-        LIBRARIES act_net_ctrl
+        LIBRARIES primis_ros
         CATKIN_DEPENDS ${CATKIN_PACKAGE_DEPENDENCIES}
         DEPENDS
 )

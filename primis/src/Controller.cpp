@@ -2,10 +2,10 @@
 // Created by Reece O'Mahoney
 //
 
-#include "act_net/Controller.hpp"
+#include "primis/Controller.hpp"
 #include <iostream>
 
-using namespace act_net;
+using namespace primis;
 
 Controller::Controller(const std::string &configPath,
                        const std::string &networkParametersPath,

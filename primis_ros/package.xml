@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>act_net_ctrl</name>
+  <name>primis_ros</name>
   <version>0.0.1</version>
-  <description>The act_net_ctrl package</description>
+  <description>The primis_ros package</description>
   <maintainer email="romahoney@robots.ox.ac.uk">Reece O'Mahoney</maintainer>
   <author email="romahoney@robots.ox.ac.uk">Reece O'Mahoney</author>
   <license>Proprietary</license>
   <buildtool_depend>catkin</buildtool_depend>
   <depend>anymal_motion_control</depend>
-  <depend>act_net</depend>
+  <depend>primis</depend>
   <depend>dynamic_class_loader</depend>
   <depend>robot_control</depend>
   <export>

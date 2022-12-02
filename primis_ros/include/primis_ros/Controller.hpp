@@ -1,18 +1,18 @@
 //
-// Created by Siddhant Gangapurwala
+// Created by Reece O'Mahoney
 //
 
-#ifndef ACT_NET_CTRL_HPP
-#define ACT_NET_CTRL_HPP
+#ifndef PRIMIS_ROS_HPP
+#define PRIMIS_ROS_HPP
 
 #include <filesystem>
 #include <anymal_motion_control/AnymalController.hpp>
 #include <loco_anymal/common/CommandTranslator.hpp>
 
-#include "act_net/Controller.hpp"
+#include "primis/Controller.hpp"
 
 
-namespace act_net_ctrl {
+namespace primis_ros {
     class Controller : virtual public anymal_motion_control::AnymalController {
 
     public:
@@ -47,7 +47,7 @@ namespace act_net_ctrl {
         void updateStateInformation();
 
     private:
-        std::unique_ptr<act_net::Controller> actNet_;
+        std::unique_ptr<primis::Controller> primis_;
         std::unique_ptr<loco_anymal::CommandTranslator> commandTranslator_;
 
     private:
@@ -64,4 +64,4 @@ namespace act_net_ctrl {
 }
 
 
-#endif //ACT_NET_CTRL_HPP
+#endif //PRIMIS_ROS_HPP

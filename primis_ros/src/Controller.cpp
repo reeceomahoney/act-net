@@ -2,7 +2,7 @@
 // Created by Reece O'Mahoney
 //
 
-#include "act_net_ctrl/Controller.hpp"
+#include "primis_ros/Controller.hpp"
 
 #include <anymal_motion_control/checks/ContactStateCheck.hpp>
 #include <anymal_motion_control/checks/StateStatusCheck.hpp>
@@ -14,7 +14,7 @@
 #include <iostream>
 
 
-using namespace act_net_ctrl;
+using namespace primis_ros;
 
 Controller::Controller() = default;
 
@@ -98,11 +98,11 @@ bool Controller::create() {
 
 bool Controller::initialize() {
     // Create Objects
-    std::string actNetParameters = ros::package::getPath("act_net_ctrl") + "/parameters";
+    std::string actNetParameters = ros::package::getPath("primis_ros") + "/parameters";
 
     if(!loadParameters(actNetParameters + "/../config")) return false;
 
-    actNet_ = std::make_unique<act_net::Controller>(
+    primis_ = std::make_unique<primis::Controller>(
             actNetParameters + "/agent.yaml",
             actNetParameters + "/policy.txt",
             actNetParameters + "/mean.txt",
@@ -110,8 +110,8 @@ bool Controller::initialize() {
     );
 
     // Reset objects
-    actNet_->reset();
-    jointPosTargets_ = actNet_->getGcInit().tail(12);
+    primis_->reset();
+    jointPosTargets_ = primis_->getGcInit().tail(12);
 
     return true;
 }
@@ -133,7 +133,7 @@ bool Controller::loadParameters(const std::string &configPath) {
 
 bool Controller::advance(anymal_motion_control::Command &command, robot_control::SharedMutex &commandMutex) {
     updateStateInformation();
-    jointPosTargets_ = actNet_->step(gc_, gv_, cmdVel_);
+    jointPosTargets_ = primis_->step(gc_, gv_, cmdVel_);
 
     /// Set the actuation commands
     boost::unique_lock<boost::shared_mutex> lockCommand(commandMutex);
@@ -156,7 +156,7 @@ void Controller::updateStateInformation() {
     gc_ = getState().getAnymalModelPtr()->getState().getGeneralizedCoordinates();
 
     baseQuat_ = gc_.segment(3, 4);
-    actNet_->quatToRotMat(baseQuat_, baseRot_);
+    primis_->quatToRotMat(baseQuat_, baseRot_);
 
     // Get generalized velocities
     gv_ = getState().getAnymalModelPtr()->getState().getGeneralizedVelocities();
@@ -169,18 +169,18 @@ void Controller::updateStateInformation() {
 
 anymal_motion_control::SwitchResult Controller::goToReferenceType(anymal_motion_control::ReferenceType referenceType) {
     switch (referenceType) {
-        case (anymal_motion_control::ReferenceType::TWIST): MELO_INFO("[ActNet] Set Twist reference type.")
+        case (anymal_motion_control::ReferenceType::TWIST): MELO_INFO("[Primis] Set Twist reference type.")
             break;
 
         case (anymal_motion_control::ReferenceType::ACTION): MELO_WARN(
-                    "[ActNet] Action reference type is not implemented.")
+                    "[Primis] Action reference type is not implemented.")
             return anymal_motion_control::SwitchResult::ERROR;
 
         case (anymal_motion_control::ReferenceType::POSE): MELO_WARN(
-                    "[ActNet] Action reference type is not implemented.")
+                    "[Primis] Action reference type is not implemented.")
             return anymal_motion_control::SwitchResult::ERROR;
 
-        case (anymal_motion_control::ReferenceType::NA): MELO_WARN("[ActNet] Reference type is not available.")
+        case (anymal_motion_control::ReferenceType::NA): MELO_WARN("[Primis] Reference type is not available.")
             return anymal_motion_control::SwitchResult::ERROR;
     }
 
