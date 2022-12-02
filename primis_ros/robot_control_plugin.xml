@@ -1,0 +1,4 @@
+<library path="lib/libprimis_ros_plugin">
+  <class type="primis_ros::Controller" base_class_type="robot_control::ControllerInterface">
+  </class>
+</library>

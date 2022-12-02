@@ -1,0 +1,5 @@
+policy:
+  ob_dim: 96
+  ac_dim: 12
+  hidden_layers: [256, 128]
+  activation: tanh
